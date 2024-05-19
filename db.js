@@ -2,6 +2,10 @@ const firebase = require('firebase');
 const uniqid = require('uniqid');
 const bcrypt = require('bcrypt');
 
+// ===========================================================
+//                      OFICIAL
+// ===========================================================
+
 var firebaseConfig = {
     apiKey: "AIzaSyCd0Z8q0WRMPbKIDgZOLOSTcGGP8PEvCMw",
     authDomain: "bot-vendas-b342c.firebaseapp.com",
@@ -10,8 +14,23 @@ var firebaseConfig = {
     messagingSenderId: "814069309081",
     appId: "1:814069309081:web:eb34e7759adb759941a208"
 };
-firebase.default.initializeApp(firebaseConfig);
 
+// ===========================================================
+//                      DEV
+// ===========================================================
+
+// var firebaseConfig = {
+//     apiKey: "AIzaSyAZTFTSbN6Vwrx4FZKZPrhlLKyYYmMZCpQ",
+//     authDomain: "bot-vendas-dev-2b2c2.firebaseapp.com",
+//     projectId: "bot-vendas-dev-2b2c2",
+//     storageBucket: "bot-vendas-dev-2b2c2.appspot.com",
+//     messagingSenderId: "215769318816",
+//     appId: "1:215769318816:web:885c08297f2c81dddad0c5",
+//     measurementId: "G-93B1N1F365"
+// };
+
+
+firebase.default.initializeApp(firebaseConfig);
 const FB = firebase.default.firestore();
 
 
@@ -19,9 +38,9 @@ const LoginByUserAndPass = async (user, pass) => {
     const passHash = (await FB.collection("webpage").doc('admin').get()).data()
 
 
-    if(user == 'admin' && await bcrypt.compare(pass, passHash.pass)) return {error: false, token: passHash.token}
-    
-    else return {error: true}
+    if (user == 'admin' && await bcrypt.compare(pass, passHash.pass)) return { error: false, token: passHash.token }
+
+    else return { error: true }
 }
 
 
@@ -74,10 +93,21 @@ const RemoveGift = async (code) => {
 const AddCcFull = async (line) => {
     if (!line) return
 
-    var price
-
-
     let arr = line.split("|")
+
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+    var price
 
     if (arr[7] == 'PREPAID') price = 22
     if (arr[7] == 'STANDARD') price = 25
@@ -118,6 +148,23 @@ const AddCcConsultadaNubank = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -141,6 +188,23 @@ const AddCcConsultadaBb = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -165,6 +229,22 @@ const AddCcConsultadaCaixa = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -191,6 +271,23 @@ const AddCcConsultavelItau = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -215,6 +312,22 @@ const AddCcConsultavelSantander = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -239,6 +352,23 @@ const AddCcConsultavelBradesco = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -263,6 +393,22 @@ const AddCcConsultavelRenner = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -287,6 +433,21 @@ const AddCcConsultavelAtacadao = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -311,6 +472,22 @@ const AddCcConsultavelCarrefour = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[6]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[7]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[8]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[9]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[10]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[11]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[12]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[13]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
     let obj = {
         'num': arr[0],
         'val': `${arr[1]}/${arr[2]}`,
@@ -337,8 +514,11 @@ const AddGift = async (type, line) => {
     var collection = `gift${type}`
 
     if (!line) return
-
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
     let obj = {
         code: arr[0],
         value: arr[1],
@@ -346,16 +526,22 @@ const AddGift = async (type, line) => {
         name: type
     }
 
-    if(obj) FB.collection(collection).add(obj)
+    if (obj) FB.collection(collection).add(obj)
 }
 
 
 //LARAS 
 
-const AddLaraMP = async (line)=> {
+const AddLaraMP = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+
     let obj = {
         name: arr[0],
         sexo: arr[1],
@@ -364,13 +550,20 @@ const AddLaraMP = async (line)=> {
         price: +arr[4]
     }
 
-    if(obj) FB.collection('laramp').add(obj);
+    if (obj) FB.collection('laramp').add(obj);
 }
 
-const AddLaraRP = async (line)=> {
+const AddLaraRP = async (line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[2]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[3]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[4]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[5]) return { error: true, msg: "Formato dos dados incorreto!" }
+
     let obj = {
         name: arr[0],
         sexo: arr[1],
@@ -380,15 +573,18 @@ const AddLaraRP = async (line)=> {
         price: +arr[5]
     }
 
-    if(obj) FB.collection('lararp').add(obj);
+    if (obj) FB.collection('lararp').add(obj);
 }
 
 const AddLogin = async (type, line) => {
     var collection = `login${type}`
 
     if (!line) return
-
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+
+
 
     const obj = {
         email: arr[0],
@@ -404,8 +600,10 @@ const AddContaHit = (type, line) => {
 
 
     if (!line) return
-
     let arr = line.split("|")
+    if (!arr[0]) return { error: true, msg: "Formato dos dados incorreto!" }
+    if (!arr[1]) return { error: true, msg: "Formato dos dados incorreto!" }
+
 
     const obj = {
         email: arr[0],
@@ -422,6 +620,9 @@ const AddContaConta = (type, line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return {error: true, msg: "Formato dos dados incorreto!"}
+    if (!arr[1]) return {error: true, msg: "Formato dos dados incorreto!"}
+   
 
     const obj = {
         email: arr[0],
@@ -438,11 +639,16 @@ const AddContaTela = (type, line) => {
 
     let arr = line.split("|")
 
+    if (!arr[0]) return {error: true, msg: "Formato dos dados incorreto!"}
+    if (!arr[1]) return {error: true, msg: "Formato dos dados incorreto!"}
+    if (!arr[2]) return {error: true, msg: "Formato dos dados incorreto!"}
+   
+
     const obj = {
         email: arr[0],
         pass: arr[1],
         numTela: arr[2],
-        pin: arr[3] ? arr[3] : false 
+        pin: arr[3] ? arr[3] : false
     }
 
     FB.collection(collection).add(obj);
@@ -454,6 +660,8 @@ const AddContaTelaConvite = (type, line) => {
     if (!line) return
 
     let arr = line.split("|")
+    if (!arr[0]) return {error: true, msg: "Formato dos dados incorreto!"}
+   
 
     const obj = {
         email: arr[0],
@@ -506,19 +714,19 @@ const GetProd = async (type) => {
 // END GET PRODS
 
 
-const GetVendas = async() =>{
+const GetVendas = async () => {
     let infos = (await FB.collection("vendas").doc("historico").get()).data().his
 
     return infos
 }
 
-const GetUsers = async() => {
+const GetUsers = async () => {
     var infos = (await FB.collection("users").get()).docs.map(i => i.data())
 
     return infos
 }
 
-const Getuser = async(id) => {
+const Getuser = async (id) => {
     var infos = (await FB.collection("users").where("id", "==", +id).get()).docs[0].data()
 
     return infos
@@ -535,7 +743,7 @@ const GetDepositoById = async (id) => {
     var infoSnap = (await FB.collection("depositos").where("idCob", "==", id).get()).docs[0]
 
     if (infoSnap) return infoSnap.data()
-    else return {error:true}
+    else return { error: true }
 }
 
 
@@ -545,7 +753,7 @@ const GetDepositosByUser = async (id) => {
     var infos = infoSnap.map(i => i.data())
 
     if (infos) return infos
-    else return {error:true}
+    else return { error: true }
 }
 
 

@@ -65,6 +65,7 @@ app.post("/add/ccfull", async (req, res) => {
 
     await itens.forEach(async (line) => {
         await db.AddCcFull(line)
+        
     })
 
     res.send("ok")
